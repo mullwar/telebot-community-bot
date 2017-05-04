@@ -1,0 +1,11 @@
+{
+  "name": "telebot-bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "telebot": "^1.1.0",
+    "google-translate-api": "teamsteamdev/google-translate-api"
+  }
+}
