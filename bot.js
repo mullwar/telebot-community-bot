@@ -1,7 +1,12 @@
 const TeleBot = require('telebot');
 const translate = require('google-translate-api');
 
-const {TELEBOT_TOKEN: TOKEN} = process.env;
+const {
+    TELEBOT_TOKEN: TOKEN,
+    TELEBOT_URL: URL,
+    TELEBOT_HOST: HOST,
+    TELEBOT_PORT: PORT,
+} = process.env;
 
 const TRANSLATE_TO = 'en';
 const TRANSLATE_ICONS = {
@@ -10,7 +15,10 @@ const TRANSLATE_ICONS = {
 };
 
 const bot = new TeleBot({
-    token: TOKEN
+    token: TOKEN,
+    url: URL,
+    host: HOST,
+    port: PORT
 });
 
 bot.on('text', (msg) => {
