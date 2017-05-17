@@ -35,10 +35,14 @@ bot.on('text', (msg) => {
         const languageId = response.from.language.iso;
 
         if (languageId !== TRANSLATE_TO) {
+
             const languageIcon = TRANSLATE_ICONS[languageId] || '';
+
             return bot.sendMessage(chatId, `${languageIcon} ${translatedText}`, {
-                reply: messageId
+                reply: messageId,
+                preview: false
             });
+            
         }
 
     });
