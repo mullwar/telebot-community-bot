@@ -2,10 +2,15 @@
   "name": "telebot-bot",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "build": "tsc -p ./node_modules/telebot",
+    "bot": "node bot.js",
+    "start": "yarn run build && yarn run bot"
   },
   "dependencies": {
-    "telebot": "^1.1.1",
-    "google-translate-api": "teamsteamdev/google-translate-api"
+    "@types/node": "^13.9.1",
+    "jest": "^25.1.0",
+    "telebot": "mullwar/telebot#version-2",
+    "translation-google": "wilsonwu/translation-google",
+    "typescript": "^3.8.3"
   }
 }
