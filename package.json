@@ -1,16 +1,13 @@
 {
-  "name": "telebot-bot",
+  "name": "telebot-community-bot",
+  "version": "2.0.0",
   "main": "bot.js",
   "scripts": {
-    "build": "tsc -p ./node_modules/telebot",
-    "bot": "node bot.js",
-    "start": "yarn run build && yarn run bot"
+    "start": "node src/bot.js"
   },
   "dependencies": {
-    "@types/node": "^13.9.1",
-    "jest": "^25.1.0",
-    "telebot": "mullwar/telebot#version-2",
-    "translation-google": "wilsonwu/translation-google",
-    "typescript": "^3.8.3"
+    "express": "^4.17.1",
+    "telebot": "^2.0.0-beta.1",
+    "translatte": "^3.0.0"
   }
 }
