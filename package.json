@@ -2,13 +2,11 @@
   "name": "telebot-community-bot",
   "version": "2.0.0",
   "main": "bot.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "start": "node src/bot.js"
   },
   "dependencies": {
+    "country-code-emoji": "^2.2.0",
     "express": "^4.17.1",
     "telebot": "^2.0.0-beta.1",
     "translatte": "^3.0.0"
