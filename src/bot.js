@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 
 const {
+    PORT,
     TELEBOT_TOKEN,
     TELEBOT_WEBHOOK_URL
 } = process.env;
@@ -30,6 +31,6 @@ app.post(`/bot/${TELEBOT_TOKEN}`, (request, response) => {
     response.sendStatus(200);
 });
 
-app.listen(80, () => console.log(
+app.listen(PORT || 80, () => console.log(
     `bot server ${TELEBOT_WEBHOOK_URL}/bot/%TELEBOT_TOKEN% started`
 ));
