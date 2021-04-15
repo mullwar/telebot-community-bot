@@ -11,6 +11,7 @@ const {
     TELEBOT_WEBHOOK_URL
 } = process.env;
 
+const botId = parseInt(TELEBOT_TOKEN.split(":")[0]);
 const bot = new TeleBot({
     token: TELEBOT_TOKEN,
     allowedUpdates: ["message"]
@@ -45,8 +46,8 @@ bot.on("text", (msg) => {
         .filter(Boolean).join(" ")} (${from_id}) - ${text}`);
 });
 
-bot.hears("/delete", (msg) => {
-    if (msg?.reply_to_message?.from?.id === bot.me.id) {
+bot.hears("/delete", async (msg) => {
+    if (msg?.reply_to_message?.from?.id === botId) {
         return bot.parallel([
             bot.deleteMessage(msg.chat.id, msg.reply_to_message.message_id),
             bot.deleteMessage(msg.chat.id, msg.message_id)
