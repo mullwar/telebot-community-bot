@@ -1,7 +1,7 @@
 {
   "name": "telebot-community-bot",
   "version": "2.0.0",
-  "main": "bot.js",
+  "main": "src/bot.js",
   "scripts": {
     "start": "node src/bot.js"
   },

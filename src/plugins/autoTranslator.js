@@ -119,14 +119,46 @@ const TRANSLATE_ICONS = {
 };
 
 module.exports = {
-    translate(value, translateTo = TRANSLATE_TO) {
-        return t(value, {to: translateTo}).then(({text, from}) => {
-            const iso = from.language.iso.toLowerCase();
-            if (iso !== translateTo) {
-                const icon = TRANSLATE_ICONS[iso];
-                return [icon, text].filter(Boolean).join(" ");
-            }
-            return null;
-        })
+    id: "telebot-auto-translator",
+    name: "Auto Translator Plugin",
+    version: "1.0.0",
+
+    plugin(bot, config = {}) {
+        const {translateTo} = config;
+
+        function translate(value, translateTo = TRANSLATE_TO) {
+            return t(value, {to: translateTo}).then(({text, from}) => {
+                const iso = from.language.iso.toLowerCase();
+                if (iso !== translateTo) {
+                    const icon = TRANSLATE_ICONS[iso];
+                    return [icon, text].filter(Boolean).join(" ");
+                }
+                return null;
+            })
+        }
+
+        bot.on("text", (msg) => {
+            const {
+                message_id,
+                text,
+                chat: {
+                    id: chat_id,
+                    type
+                }
+            } = msg;
+
+            if (!(["group", "supergroup"].includes(type))) return;
+
+            return translate(text, translateTo).then((value) => {
+                if (value) {
+                    return bot.sendMessage(chat_id, value, {
+                        reply_to_message_id: message_id,
+                        disable_notification: true,
+                        disable_web_page_preview: true
+                    });
+                }
+            });
+        });
+
     }
 };
