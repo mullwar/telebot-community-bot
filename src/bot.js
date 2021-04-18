@@ -1,9 +1,5 @@
 const {TeleBot} = require("telebot");
-const express = require("express");
 const autoTranslator = require("./plugins/autoTranslator");
-
-const app = express();
-app.use(express.json());
 
 const {
     PORT,
@@ -12,19 +8,20 @@ const {
 } = process.env;
 
 const botId = parseInt(TELEBOT_TOKEN.split(":")[0]);
+
 const bot = new TeleBot({
     token: TELEBOT_TOKEN,
-    allowedUpdates: ["message"]
+    allowedUpdates: ["message"],
+    webhook: {
+        url: `${TELEBOT_WEBHOOK_URL}/bot`,
+        serverHost: "localhost",
+        serverPort: PORT,
+        drop_pending_updates: true
+    }
 });
 
 bot.plugin(autoTranslator, {
     translateTo: "en"
-});
-
-bot.deleteWebhook().then(() => {
-    return bot.setWebhook(`${TELEBOT_WEBHOOK_URL}/bot/${TELEBOT_TOKEN}`, {
-        drop_pending_updates: true
-    });
 });
 
 bot.on("text", (msg) => {
@@ -41,7 +38,7 @@ bot.on("text", (msg) => {
             username
         }
     } = msg;
-    
+
     console.log(`[${type}] ${chat_id}: ${[first_name, last_name, username && `@${username}`]
         .filter(Boolean).join(" ")} (${from_id}) - ${text}`);
 });
@@ -57,15 +54,10 @@ bot.hears("/delete", async (msg) => {
 
 bot.on("error", (error) => console.error("ERROR", error));
 
-app.post(`/bot/${TELEBOT_TOKEN}`, (request, response) => {
-    bot.processTelegramUpdates([request.body]);
-    response.sendStatus(200);
+bot.start().then((webhook) => {
+    if (webhook) {
+        console.log(`bot webhook started on ${webhook.url}`);
+    } else {
+        console.log("bot started");
+    }
 });
-
-app.get("/", (request, response) => {
-    response.status(301).redirect("https://github.com/mullwar/telebot-community-bot")
-});
-
-app.listen(PORT || 80, () => console.log(
-    `bot server is started: ${TELEBOT_WEBHOOK_URL}/bot/%TELEBOT_TOKEN%`
-));
