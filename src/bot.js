@@ -14,7 +14,7 @@ const bot = new TeleBot({
     allowedUpdates: ["message"],
     webhook: {
         url: `${TELEBOT_WEBHOOK_URL}/bot`,
-        serverHost: "localhost",
+        serverHost: "0.0.0.0",
         serverPort: PORT,
         drop_pending_updates: true
     }
