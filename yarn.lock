@@ -269,10 +269,10 @@ signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
-telebot@^2.0.0-beta.2:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/telebot/-/telebot-2.0.0-beta.2.tgz#a9f2a64cc6f5a27c0ebd8335ec7aa14ff25db731"
-  integrity sha512-P1mXBVga3HkMRhTAWZNV6ODzPhx8C71dy/i06mXnwK21+VMYc2De9YSymAXbWLY8STjnloCxuXAt7GivGMYHnA==
+telebot@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/telebot/-/telebot-2.0.0-beta.3.tgz#fe5459407274fc1644ed2d21316df817077c2a17"
+  integrity sha512-cW6xuUVrt62qd9Ioo/RTu2NIW9ZegOmnQuetP8hx+eF0T6WX6cbROBhWvGWdO6WV/tTwaOmozUcdi/zVys1A2A==
   dependencies:
     axios "^0.21.1"
     form-data "^4.0.0"

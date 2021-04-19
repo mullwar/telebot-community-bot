@@ -1,4 +1,4 @@
-const {TeleBot} = require("telebot");
+const {TeleBot} = require("../../telebot");
 const autoTranslator = require("./plugins/autoTranslator");
 
 const {
@@ -6,8 +6,6 @@ const {
     TELEBOT_TOKEN,
     TELEBOT_WEBHOOK_URL
 } = process.env;
-
-const botId = parseInt(TELEBOT_TOKEN.split(":")[0]);
 
 const bot = new TeleBot({
     token: TELEBOT_TOKEN,
@@ -44,7 +42,7 @@ bot.on("text", (msg) => {
 });
 
 bot.hears("/delete", async (msg) => {
-    if (msg?.reply_to_message?.from?.id === botId) {
+    if (msg?.reply_to_message?.from?.id === bot.me.id) {
         return bot.parallel([
             bot.deleteMessage(msg.chat.id, msg.reply_to_message.message_id),
             bot.deleteMessage(msg.chat.id, msg.message_id)
