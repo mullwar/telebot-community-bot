@@ -1,4 +1,4 @@
-const {TeleBot} = require("../../telebot");
+const {TeleBot} = require("telebot");
 const autoTranslator = require("./plugins/autoTranslator");
 
 const {
